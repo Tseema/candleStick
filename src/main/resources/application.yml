@@ -1,0 +1,49 @@
+server:
+  port: 9004
+spring:
+  application:
+    name: candleStick
+  datasource:
+    url: jdbc:postgresql://localhost:5435/postgres
+    username: postgres
+    password: postgresFirst
+    driver-class-name: org.postgresql.Driver
+
+  flyway:
+      url: jdbc:postgresql://localhost:5435/postgres
+      user: postgres
+      password: postgresFirst
+      locations: classpath:db/migration
+
+  jpa:
+      database: postgresql
+      show-sql: true
+      flyway:
+        enabled: true
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          default_schema: cs
+        format_sql: true
+  sql:
+    init:
+      schema: db/migration/V1__Initial_schema.sql
+
+
+
+
+logging:
+  level:
+    org:
+      hibernate:
+        sql: DEBUG
+        orm:
+          jdbc:
+            bind: trace
+
+
+
+
+
+
